@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Know the Weather</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #e9ecef;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        #main {
+            text-align: center;
+            padding-top: 100px;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #343a40;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+        }
+        .btn-custom {
+            width: 100%;
+            padding: 15px;
+            background: #007bff;
+            color: white;
+            text-transform: uppercase;
+            border: none;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        .btn-custom:hover {
+            background: #0056b3;
+        }
+        .result {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .result h3 {
+            margin: 10px 0;
+            color: #495057;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div id="main">
+        <h1>Know the Weather</h1>
+        <form method="GET">
+            <div class="form-group">
+                <input type="text" id="city" class="form-control" value="{{ request.GET.city }}" placeholder="Enter city name..." name="city"/>
+            </div>
+            <button type="submit" class="btn btn-custom">Submit</button>
+        </form>
+        {% if result %}
+            <div class="result">
+                <h3>{{ result.dayhour }}</h3>
+                <h3>{{ result.region }}</h3>
+                <h3>{{ result.weather_now }}</h3>
+                <h3>{{ result.temp_now }}</h3>
+            </div>
+        {% endif %}
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
