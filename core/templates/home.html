@@ -1,80 +1,84 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Know the Weather</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Information</title>
     <style>
         body {
-            background-color: #e9ecef;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #83a4d4, #b6fbff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
-        #main {
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
             text-align: center;
-            padding-top: 100px;
         }
         h1 {
-            margin-bottom: 20px;
-            color: #343a40;
-        }
-        .form-group {
+            color: #333;
             margin-bottom: 20px;
         }
-        .form-control {
-            width: 100%;
-            padding: 15px;
-            font-size: 16px;
+        form {
+            margin-bottom: 20px;
         }
-        .btn-custom {
-            width: 100%;
-            padding: 15px;
-            background: #007bff;
-            color: white;
-            text-transform: uppercase;
-            border: none;
-            font-size: 16px;
+        input[type="text"] {
+            padding: 10px;
+            width: calc(100% - 22px);
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
             border-radius: 5px;
+            box-sizing: border-box;
         }
-        .btn-custom:hover {
+        button {
+            padding: 10px 20px;
+            background: #007BFF;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
             background: #0056b3;
         }
-        .result {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        .weather-info {
             margin-top: 20px;
         }
-        .result h3 {
-            margin: 10px 0;
-            color: #495057;
+        .weather-info h2 {
+            color: #007BFF;
+            margin-bottom: 10px;
+        }
+        .weather-info p {
+            margin: 5px 0;
+            color: #555;
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <div id="main">
-        <h1>Know the Weather</h1>
-        <form method="GET">
-            <div class="form-group">
-                <input type="text" id="city" class="form-control" value="{{ request.GET.city }}" placeholder="Enter city name..." name="city"/>
-            </div>
-            <button type="submit" class="btn btn-custom">Submit</button>
+    <div class="container">
+        <h1>Weather Information</h1>
+        <form method="get" action="">
+            <input type="text" name="city" placeholder="Enter city" required>
+            <button type="submit">Get Weather</button>
         </form>
         {% if result %}
-            <div class="result">
-                <h3>{{ result.dayhour }}</h3>
-                <h3>{{ result.region }}</h3>
-                <h3>{{ result.weather_now }}</h3>
-                <h3>{{ result.temp_now }}</h3>
-            </div>
+        <div class="weather-info">
+            <h2>Weather for {{ result.region }}</h2>
+            <p><strong>Day & Time:</strong> {{ result.dayhour }}</p>
+            <p><strong>Temperature:</strong> {{ result.temp_now }}</p>
+            <p><strong>Condition:</strong> {{ result.weather_now }}</p>
+        </div>
         {% endif %}
     </div>
-</div>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
